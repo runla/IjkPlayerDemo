@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="C:\test\VideoViewTest1\app\libs"><file name="armeabi/libijkffmpeg.so" path="C:\test\VideoViewTest1\app\libs\armeabi\libijkffmpeg.so"/><file name="armeabi/libijkplayer.so" path="C:\test\VideoViewTest1\app\libs\armeabi\libijkplayer.so"/><file name="armeabi/libijksdl.so" path="C:\test\VideoViewTest1\app\libs\armeabi\libijksdl.so"/></source></dataSet><dataSet config="debug"><source path="C:\test\VideoViewTest1\app\src\debug\jniLibs"/></dataSet></merger>
