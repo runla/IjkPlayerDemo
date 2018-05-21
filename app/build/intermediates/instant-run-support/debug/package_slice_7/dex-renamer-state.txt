@@ -1,4 +1,4 @@
-#Fri May 18 16:48:12 CST 2018
+#Mon May 21 11:00:39 CST 2018
 base.0=C\:\\test\\VideoViewTest1\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\27
 path.0=classes.dex
 renamed.0=classes.dex

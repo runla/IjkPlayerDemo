@@ -12,4 +12,5 @@ public class MyApplication extends Application {
         super.onCreate();
         CrashRestartHelper.getInstance().init(this);
     }
+
 }

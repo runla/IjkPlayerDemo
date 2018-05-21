@@ -4,19 +4,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.VideoView;
 
 import com.seewo.videoviewtest.widget.media.IjkVideoView;
-import com.seewo.videoviewtest.widget.media.MediaPlayerCompat;
 
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 import tv.danmaku.ijk.media.player.misc.ITrackInfo;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
     private boolean mIsFullScreen;
     private IjkVideoView mVideoView;
+    private static final String TAG = "MainActivity";
+    private String url = "http://p7r9pxtrv.bkt.clouddn.com/201705766.mkv";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,8 +24,9 @@ public class MainActivity extends AppCompatActivity {
         IjkMediaPlayer.native_profileBegin("libijkplayer.so");
         mVideoView = findViewById(R.id.video_view);
         mVideoView.setRender(IjkVideoView.RENDER_TEXTURE_VIEW);
-        mVideoView.setVideoPath("http://p7r9pxtrv.bkt.clouddn.com/201705766.mkv");
-        mVideoView.start();
+        startVideo();
+//        mVideoView.setVideoPath("http://p7r9pxtrv.bkt.clouddn.com/201705766.mkv");
+//        mVideoView.start();
     }
 
     public void changeSize(View view1) {
@@ -48,29 +48,35 @@ public class MainActivity extends AppCompatActivity {
         mIsFullScreen = !mIsFullScreen;
     }
 
+    private void startVideo() {
+
+        mVideoView.setVideoPath(url);
+        mVideoView.start();
+    }
+
     @Override
     protected void onDestroy() {
         mVideoView.stopPlayback();
         super.onDestroy();
     }
     private Boolean isYuanchan = true;
-
+    private int position;
     public void changeTrace(View view){
         ITrackInfo[] trackInfos = mVideoView.getTrackInfo();
         Log.e("text", "changeTrace: "+"===============", null);
-
-//        mVideoView.showMediaInfo();
+        position = mVideoView.getCurrentPosition();
         if (isYuanchan) {
-            new MyThread(2).run();
-//            mVideoView.selectTrack(2);
+            mVideoView.selectTrack(2);
+//            mVideoView.seekTo(position);
         }else{
-//            mVideoView.selectTrack(1);
-            new MyThread(1).run();
+            mVideoView.selectTrack(1);
+//            mVideoView.seekTo(position);
         }
         isYuanchan = !isYuanchan;
         Log.e("text", "changeTrace: "+"===============", null);
 
     }
+
     private class MyThread implements Runnable{
         int type;
         public MyThread(int type){
